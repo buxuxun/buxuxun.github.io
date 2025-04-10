@@ -428,7 +428,7 @@
 
     <div id="estimate" role="alert" aria-live="polite">お見積り金額: 計算中...</div>
 
-    <script>
+    <script defer>
         const youtubeVideos = [
             "https://www.youtube.com/embed/8zi1M5N3XEU",
             "https://www.youtube.com/embed/7mWHhj0VPJk",
@@ -532,6 +532,7 @@
             const newContent = newSection.querySelector('.content-wrapper');
             if (!newContent) {
                 console.error(`Content wrapper not found in section ${sectionId}!`);
+                console.log(`Section HTML: ${newSection.innerHTML}`);
                 return;
             }
 
