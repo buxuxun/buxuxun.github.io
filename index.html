@@ -7,7 +7,7 @@
     <title>STUDIO BUN</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Raleway:wght@300;400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- 共通CSSをリンク -->
+    <link rel="stylesheet" href="styles.css">
     <style>
         section {
             padding: 80px 20px 120px;
@@ -546,6 +546,7 @@
             const hash = window.location.hash.substring(1);
             const validSections = ['home', 'profile', 'works', 'price', 'form', 'contact'];
             const sectionToShow = validSections.includes(hash) ? hash : 'home';
+            console.log(`Initial section to show: ${sectionToShow}`); // 初期表示の確認
             showSection(sectionToShow);
         });
 
