@@ -3,12 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="STUDIO BUN - プロフェッショナルなミキシングサービスであなたの音楽を次のレベルへ">
     <title>STUDIO BUN</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Raleway:wght@300;400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
     <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://images.unsplash.com/photo-1513635269975-59663e0ac514?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+            line-height: 1.6;
+            position: relative;
+            height: 100vh; /* body全体を画面高さに */
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1000;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+            background-size: cover;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 0;
+        }
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 36px;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+        #desktop-nav {
+            margin: 15px 0;
+            position: relative;
+            z-index: 1;
+        }
+        #desktop-nav a {
+            color: #b0b0b0;
+            text-decoration: none;
+            margin: 0 15px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            text-transform: lowercase;
+            transition: color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+        #desktop-nav a:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        #desktop-nav a.active {
+            color: #ffffff;
+            font-weight: 700;
+            border-bottom: 2px solid #ffffff;
+        }
+        .hamburger {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1002;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+            padding: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .hamburger span {
+            position: absolute;
+            width: 70%;
+            height: 3px;
+            background: #333333;
+            transition: all 0.3s ease;
+            left: 15%;
+        }
+        .hamburger span:nth-child(1) { top: 10px; }
+        .hamburger span:nth-child(2) { top: 18px; }
+        .hamburger span:nth-child(3) { top: 26px; }
+        #sidebar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 250px;
+            height: 100vh; /* 画面全体の高さに */
+            background: #333333;
+            padding: 60px 10px 10px; /* パディング調整 */
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+            transition: left 0.3s ease;
+            z-index: 1001;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px; /* メニュー間の間隔 */
+            align-content: start; /* 上から詰めて配置 */
+        }
+        #sidebar a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-family: 'Raleway', sans-serif;
+            font-size: 18px;
+            padding: 15px; /* メニュー項目の高さ調整 */
+            border-radius: 5px;
+            transition: background 0.3s ease, color 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+        #sidebar a:hover {
+            background: #555555;
+            color: #ffffff;
+        }
+        #sidebar a.active {
+            background: #444444;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        #sidebar.open {
+            left: 0;
+        }
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+        #overlay.active {
+            display: block;
+        }
         section {
             padding: 80px 20px 120px;
             text-align: center;
@@ -68,7 +227,6 @@
             display: block;
             border: 2px solid #e0e0e0;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            loading: lazy;
         }
         .youtube-videos {
             display: grid;
@@ -125,6 +283,15 @@
             box-sizing: border-box;
             transition: border 0.3s ease;
         }
+        input[type="text"]::placeholder, input[type="url"]::placeholder, textarea::placeholder {
+            color: #999999;
+        }
+        select.main-select {
+            width: 50%;
+        }
+        select.number-select {
+            width: 25%;
+        }
         input[type="text"]:focus, input[type="url"]:focus, select:focus, textarea:focus {
             border: 1px solid #e0e0e0;
             outline: none;
@@ -141,9 +308,9 @@
             font-size: 1rem;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 1.5rem;
+            margin: 1.5rem auto 0;
             display: block;
-            width: 100%;
+            width: 50%;
             font-family: 'Raleway', sans-serif;
             font-weight: 700;
             text-transform: uppercase;
@@ -166,7 +333,7 @@
             font-family: 'Raleway', sans-serif;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1003;
+            z-index: 1002;
             display: none;
         }
         #estimate.active {
@@ -184,6 +351,38 @@
             opacity: 1;
             transform: translateY(0);
         }
+        #estimate-summary {
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: #b0b0b0;
+            text-align: center;
+            padding: 7.5px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1001;
+        }
+        .social-icons a {
+            color: #b0b0b0;
+            margin: 0 10px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #e0e0e0;
+        }
         #contact a {
             color: #e67e22;
             text-decoration: none;
@@ -192,14 +391,25 @@
         #contact a:hover {
             color: #ff9f43;
         }
-        #contact p {
-            margin: 10px auto;
-        }
         @media (max-width: 768px) {
+            #desktop-nav {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            #sidebar {
+                display: grid;
+                height: 100vh; /* スマホでも画面全体 */
+            }
             section {
                 padding: 40px 15px 80px;
                 margin-top: 90px;
                 min-height: calc(100vh - 190px);
+            }
+            header h1 {
+                font-size: 28px;
+                margin-right: 50px;
             }
             .youtube-videos {
                 grid-template-columns: 1fr;
@@ -213,222 +423,227 @@
             }
             #estimate {
                 right: 10%;
-                left: auto;
-                bottom: 20px;
-                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <header role="banner">
+    <header>
         <h1>STUDIO BUN</h1>
-        <nav id="desktop-nav" aria-label="メインナビゲーション">
-            <a href="#home" onclick="showSection('home')" class="active">home</a>
-            <a href="#profile" onclick="showSection('profile')">profile</a>
-            <a href="#works" onclick="showSection('works')">works</a>
-            <a href="#price" onclick="showSection('price')">price</a>
-            <a href="#form" onclick="showSection('form')">form</a>
-            <a href="#contact" onclick="showSection('contact')">contact</a>
+        <nav id="desktop-nav">
+            <a onclick="showSection('home')" class="active">home</a>
+            <a onclick="showSection('profile')">profile</a>
+            <a onclick="showSection('works')">works</a>
+            <a onclick="showSection('price')">price</a>
+            <a onclick="showSection('form')">form</a>
+            <a onclick="showSection('contact')">contact</a>
         </nav>
-        <button class="hamburger" onclick="toggleSidebar()" aria-label="メニューを開く" aria-expanded="false" aria-controls="sidebar">
+        <div class="hamburger" onclick="toggleSidebar()">
             <span></span>
             <span></span>
             <span></span>
-        </button>
-        <nav id="sidebar" role="navigation" aria-label="モバイルナビゲーション">
-            <a href="#home" onclick="showSection('home')" class="active">home</a>
-            <a href="#profile" onclick="showSection('profile')">profile</a>
-            <a href="#works" onclick="showSection('works')">works</a>
-            <a href="#price" onclick="showSection('price')">price</a>
-            <a href="#form" onclick="showSection('form')">form</a>
-            <a href="#contact" onclick="showSection('contact')">contact</a>
+        </div>
+        <nav id="sidebar">
+            <a onclick="showSection('home')" class="active">home</a>
+            <a onclick="showSection('profile')">profile</a>
+            <a onclick="showSection('works')">works</a>
+            <a onclick="showSection('price')">price</a>
+            <a onclick="showSection('form')">form</a>
+            <a onclick="showSection('contact')">contact</a>
         </nav>
-        <div id="overlay" onclick="toggleSidebar()" aria-hidden="true"></div>
+        <div id="overlay" onclick="toggleSidebar()"></div>
     </header>
 
-    <main>
-        <section id="home" class="active" role="region" aria-labelledby="home-heading">
-            <div class="content-wrapper active">
-                <h2 id="home-heading">HOME</h2>
-                <p>あなたの音楽を次のレベルへ。プロフェッショナルなミックスで最高のサウンドを。</p>
-            </div>
-        </section>
+    <section id="home" class="active">
+        <div class="content-wrapper active">
+            <h2>HOME</h2>
+            <p>あなたの音楽を次のレベルへ。プロフェッショナルなミックスで最高のサウンドを。</p>
+        </div>
+    </section>
 
-        <section id="profile" role="region" aria-labelledby="profile-heading">
-            <div class="content-wrapper">
-                <h2 id="profile-heading">Profile</h2>
-                <p>
-                    2011年から歌ってみたMIXを中心に活動。<br><br>
-                    音楽専門学校レコーディング科を卒業後、<br>
-                    レコーディングスタジオ勤務を経てミキシングエンジニアとして独立。<br><br>
-                    星街すいせい／めいちゃん／花園セレナ／春茶 等数多くのミックスを担当し、<br>
-                    初投稿のサポートなども積極的に行っている。<br><br>
-                    過去1000件以上のミックスを担当。
-                </p>
-                <img src="images/profile.jpg" alt="プロフィール画像" class="profile-image">
-            </div>
-        </section>
+    <section id="profile">
+        <div class="content-wrapper">
+            <h2>Profile</h2>
+            <p>
+                2011年から歌ってみたMIXを中心に活動。<br><br>
+                音楽専門学校レコーディング科を卒業後、<br>
+                レコーディングスタジオ勤務を経てミキシングエンジニアとして独立。<br><br>
+                星街すいせい／めいちゃん／花園セレナ／春茶 等数多くのミックスを担当し、<br>
+                初投稿のサポートなども積極的に行っている。<br><br>
+                過去1000件以上のミックスを担当。
+            </p>
+            <img src="images/profile.jpg" alt="Profile Image" class="profile-image">
+        </div>
+    </section>
 
-        <section id="works" role="region" aria-labelledby="works-heading">
-            <div class="content-wrapper">
-                <h2 id="works-heading">Works</h2>
-                <p>主な過去の担当作品。<br>星街すいせい／めいちゃん／花園セレナ／春茶 etc..</p>
-                <div class="youtube-videos" id="youtube-videos"></div>
-            </div>
-        </section>
+    <section id="works">
+        <div class="content-wrapper">
+            <h2>Works</h2>
+            <p>主な過去の担当作品。<br>星街すいせい／めいちゃん／花園セレナ／春茶 etc..</p>
+            <div class="youtube-videos" id="youtube-videos"></div>
+        </div>
+    </section>
 
-        <section id="price" role="region" aria-labelledby="price-heading">
-            <div class="content-wrapper">
-                <h2 id="price-heading">Price</h2>
-                <p>基本料金：フルコーラス￥7,000 / ワンコーラス￥5,000</p>
-                <p>納期オプション：3日（+￥3,000） / 1週間（+￥2,000） / 2週間（+￥0）</p>
-                <p>コラボ：2人から選択可能、1人増えるごとに+￥3,000（例：コラボ2人の場合、基本料金+￥3,000、3人の場合+￥6,000）</p>
-                <p>追加料金：</p>
-                <ul>
-                    <li>メイントラック：1本目無料、2本目以降1本につき+￥1,000（コラボありの場合はコラボ人数分まで無料、例：コラボ2人なら2本まで無料）</li>
-                    <li>ハモリトラック：1本目無料、2本目以降1本につき+￥1,000（コラボありの場合はコラボ人数分まで無料、例：コラボ2人なら2本まで無料）</li>
-                    <li>ハモリ作成：1本目から1本につき+￥1,000</li>
-                    <li>その他（コーラス、合いの手など）：1本目から1本につき+￥1,000</li>
-                </ul>
-                <p>詳細なお見積りはフォームにてご確認ください。</p>
-                <p><strong style="font-size: 1.2rem;">お支払いについて</strong></p>
-                <p>お支払いを確認させていただいてから、作業開始いたします。<br>※お支払い方法は現金振込とさせていただきます。</p>
-            </div>
-        </section>
+    <section id="price">
+        <div class="content-wrapper">
+            <h2>Price</h2>
+            <p>基本料金：フルコーラス￥7,000 / ワンコーラス￥5,000</p>
+            <p>納期オプション：3日（+￥3,000） / 1週間（+￥2,000） / 2週間（+￥0）</p>
+            <p>コラボ：1人増えるごとに+￥4,000（例：コラボ2人の場合、基本料金+￥4,000、3人の場合+￥8,000）</p>
+            <p>追加料金：</p>
+            <ul>
+                <li>メイントラック：1本目無料、2本目以降1本につき+￥1,000（コラボありの場合はコラボ人数分まで無料）</li>
+                <li>ハモリトラック：1本目無料、2本目以降1本につき+￥1,000（コラボありの場合はコラボ人数分まで無料）</li>
+                <li>ハモリ作成：1本目から1本につき+￥1,000</li>
+                <li>その他（コーラス、合いの手など）：1本目から1本につき+￥1,000</li>
+            </ul>
+            <p>詳細なお見積りはフォームにてご確認ください。</p>
+            <p><strong style="font-size: 1.2rem;">お支払いについて</strong></p>
+            <p>お支払いを確認させていただいてから、作業開始いたします。<br>※お支払い方法は現金振込とさせていただきます。</p>
+        </div>
+    </section>
 
-        <section id="form" role="region" aria-labelledby="form-heading">
-            <div class="content-wrapper">
-                <form id="mixForm" action="https://formsubmit.co/buxuxuq@gmail.com" method="POST" aria-label="ミックス依頼フォーム">
-                    <h2 id="form-heading">Form</h2>
-                    <label for="fullname">お名前</label>
-                    <input type="text" id="fullname" name="fullname" required aria-required="true">
-                    <label for="contact">ご連絡先（XのIDもしくはメールアドレス）</label>
-                    <input type="text" id="contact" name="contact" required aria-required="true">
-                    <label for="base_price">基本料金</label>
-                    <select id="base_price" name="base_price" required aria-required="true">
-                        <option value="フルコーラス">フルコーラス（￥7,000）</option>
-                        <option value="ワンコーラス">ワンコーラス（￥5,000）</option>
+    <section id="form">
+        <div class="content-wrapper">
+            <form id="mixForm" action="https://formsubmit.co/buxuxuq@gmail.com" method="POST">
+                <h2>Form</h2>
+                <label>お名前</label>
+                <input type="text" name="name" placeholder="ぶん" required>
+                <label>ご連絡先（XのIDもしくはメールアドレス）</label>
+                <input type="text" name="contact" placeholder="buxun" required>
+                <label>基本料金</label>
+                <select name="base_price" id="base_price" class="main-select" required>
+                    <option value="フルコーラス">フルコーラス（￥7,000）</option>
+                    <option value="ワンコーラス">ワンコーラス（￥5,000）</option>
+                </select>
+                <label>納期</label>
+                <select name="delivery" id="delivery" class="main-select" required>
+                    <option value="2週間">2週間（+￥0）</option>
+                    <option value="1週間">1週間（+￥2,000）</option>
+                    <option value="3日">3日（+￥3,000）</option>
+                </select>
+                <label>コラボの有無</label>
+                <select name="collab" id="collab" class="main-select" required>
+                    <option value="なし">コラボなし</option>
+                    <option value="あり">コラボあり</option>
+                </select>
+                <div id="collab-members">
+                    <label>コラボ人数（1人増えるごとに+￥4,000）</label>
+                    <select name="collab_members" id="collab_members" class="number-select">
+                        <option value="2">2人</option>
+                        <option value="3">3人</option>
+                        <option value="4">4人</option>
+                        <option value="5">5人</option>
+                        <option value="6">6人</option>
+                        <option value="7">7人</option>
+                        <option value="8">8人</option>
+                        <option value="9">9人</option>
+                        <option value="10">10人</option>
                     </select>
-                    <label for="delivery">納期</label>
-                    <select id="delivery" name="delivery" required aria-required="true">
-                        <option value="2週間">2週間（+￥0）</option>
-                        <option value="1週間">1週間（+￥2,000）</option>
-                        <option value="3日">3日（+￥3,000）</option>
-                    </select>
-                    <label for="collab">コラボの有無</label>
-                    <select id="collab" name="collab" required aria-required="true">
-                        <option value="なし">コラボなし</option>
-                        <option value="あり">コラボあり</option>
-                    </select>
-                    <div id="collab-members">
-                        <label for="collab_members">コラボ人数（1人増えるごとに+￥3,000）</label>
-                        <select id="collab_members" name="collab_members">
-                            <option value="2">2人</option>
-                            <option value="3">3人</option>
-                            <option value="4">4人</option>
-                            <option value="5">5人</option>
-                            <option value="6">6人</option>
-                            <option value="7">7人</option>
-                            <option value="8">8人</option>
-                            <option value="9">9人</option>
-                            <option value="10">10人</option>
-                        </select>
-                    </div>
-                    <label for="title_url">曲名（原曲URL）</label>
-                    <input type="text" id="title_url" name="title_url" required aria-required="true">
-                    <label for="audio_url">音源データURL（ギガファイル便など）</label>
-                    <input type="url" id="audio_url" name="audio_url" required aria-required="true">
-                    <label for="ref_url">参考曲URL（任意）</label>
-                    <input type="url" id="ref_url" name="ref_url">
-                    <label for="main_track">メイントラック</label>
-                    <select id="main_track" name="main_track">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    <label for="harmony_track">ハモリトラック</label>
-                    <select id="harmony_track" name="harmony_track">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    <label for="harmony_creation">ハモリトラック作成</label>
-                    <select id="harmony_creation" name="harmony_creation">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    <label for="other_track">その他(コーラスや合いの手など)</label>
-                    <select id="other_track" name="other_track">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    <label for="message">その他要望</label>
-                    <textarea id="message" name="message" rows="5" placeholder="エフェクトや納期のご相談などあればどうぞ"></textarea>
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_subject" value="STUDIO BUN - 新しいミックス依頼">
-                    <input type="hidden" name="_next" value="https://buxuxun.github.io/thanks.html">
-                    <button type="submit">送信する</button>
-                </form>
-            </div>
-        </section>
+                </div>
+                <label>曲名（原曲URL）</label>
+                <input type="text" name="title_url" placeholder="GLIDE（https://www.youtube.com/watch?v=JhYUena5eTs&ab）" required>
+                <label>音源URL（ギガファイル便など）</label>
+                <input type="url" name="audio_url" placeholder="https://gigafile.nu/" required>
+                <label>参考曲URL（任意）</label>
+                <input type="url" name="ref_url" placeholder="https://www.youtube.com/watch?v=BTboTXKWv80&ab">
+                <label>トラック数</label>
+                <label>メイントラック（2本目以降1本につき+￥1,000、コラボありならコラボ人数分まで無料）</label>
+                <select name="main_track" id="main_track" class="number-select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <label>ハモリトラック（2本目以降1本につき+￥1,000、コラボありならコラボ人数分まで無料）</label>
+                <select name="harmony_track" id="harmony_track" class="number-select">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <label>ハモリトラック作成（1本につき+￥1,000）</label>
+                <select name="harmony_creation" id="harmony_creation" class="number-select">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <label>その他(コーラスや合いの手など)（1本につき+￥1,000）</label>
+                <select name="other_track" id="other_track" class="number-select">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <label>その他要望</label>
+                <textarea name="message" rows="5" placeholder="エフェクトや納期のご相談などあればどうぞ"></textarea>
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="STUDIO BUN - 新しいミックス依頼">
+                <button type="submit">送信する</button>
+            </form>
+        </div>
+    </section>
 
-        <section id="contact" role="region" aria-labelledby="contact-heading">
-            <div class="content-wrapper">
-                <h2 id="contact-heading">Contact</h2>
-                <p>何かご不明な点ございましたら、直接XのDMからご連絡していただけたらと思います。</p>
-                <p>企業様は、直接メールにてご連絡ください。</p>
-                <p>X(旧Twitter): <a href="https://twitter.com/buxun" target="_blank" rel="noopener noreferrer">@buxun</a></p>
-                <p>メールアドレス: <a href="mailto:buxuxuq@gmail.com">buxuxuq@gmail.com</a></p>
-            </div>
-        </section>
-    </main>
+    <section id="contact">
+        <div class="content-wrapper">
+            <h2>Contact</h2>
+            <p>何かご不明な点ございましたら、直接XのDMからご連絡していただけたらと思います。</p>
+            <p>企業様は、直接メールにてご連絡ください。</p>
+            <p>X(旧Twitter): <a href="https://twitter.com/buxun" target="_blank">@buxun</a></p>
+            <p>メールアドレス: <a href="mailto:buxuxuq@gmail.com">buxuxuq@gmail.com</a></p>
+        </div>
+    </section>
 
-    <footer role="contentinfo">
+    <section id="thanks">
+        <div class="content-wrapper">
+            <h2>ありがとうございます</h2>
+            <p>ご依頼いただき、ありがとうございます。</p>
+            <p>仮のお見積りはこちらです</p>
+            <div id="estimate-summary"></div>
+            <p>アップロードしていただいた音源を確認後、正確なお見積りを作成し、こちらからご連絡いたします。</p>
+        </div>
+    </section>
+
+    <footer>
         <div class="social-icons">
-            <a href="https://x.com/buxun" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.youtube.com/@buxuxun" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/buxun" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/buxun"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/@buxuxun"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/buxun"><i class="fab fa-instagram"></i></a>
         </div>
         <p>© 2025 STUDIO BUN. All rights reserved.</p>
     </footer>
 
-    <div id="estimate" role="alert" aria-live="polite">お見積り金額: 計算中...</div>
+    <div id="estimate">お見積り金額: 計算中...</div>
 
-    <script defer>
+    <script>
         const youtubeVideos = [
             "https://www.youtube.com/embed/8zi1M5N3XEU",
             "https://www.youtube.com/embed/7mWHhj0VPJk",
@@ -455,143 +670,114 @@
                 const iframe = document.createElement("iframe");
                 iframe.src = videoUrl;
                 iframe.allowFullscreen = true;
-                iframe.loading = "lazy";
                 container.appendChild(iframe);
             });
         }
 
         function toggleSidebar() {
-            try {
-                const sidebar = document.getElementById("sidebar");
-                const overlay = document.getElementById("overlay");
-                const hamburger = document.querySelector(".hamburger");
-                if (sidebar && overlay && hamburger) {
-                    sidebar.classList.toggle("open");
-                    overlay.classList.toggle("active");
-                    const isOpen = sidebar.classList.contains("open");
-                    hamburger.setAttribute("aria-expanded", isOpen);
-                    console.log("Sidebar toggled:", isOpen ? "open" : "closed");
-                } else {
-                    console.error("Sidebar, overlay, or hamburger not found!");
-                }
-            } catch (e) {
-                console.error("Error in toggleSidebar:", e);
-            }
-        }
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        const sidebarElement = document.getElementById("sidebar");
-        if (sidebarElement) {
-            sidebarElement.addEventListener("touchstart", (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            sidebarElement.addEventListener("touchmove", (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-            });
-
-            sidebarElement.addEventListener("touchend", () => {
-                if (touchStartX - touchEndX > 50) {
-                    toggleSidebar();
-                }
-            });
-        } else {
-            console.error("Sidebar element not found for touch events!");
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("overlay");
+            sidebar.classList.toggle("open");
+            overlay.classList.toggle("active");
+            console.log("Sidebar toggled:", sidebar.classList.contains("open") ? "open" : "closed");
         }
 
         function showSection(sectionId) {
-            console.log(`Starting showSection for: ${sectionId}`);
-
-            // 現在のセクションを非表示
-            const currentSection = document.querySelector('section.active');
-            if (currentSection) {
-                const currentContent = currentSection.querySelector('.content-wrapper');
-                if (currentContent) {
-                    currentContent.style.opacity = '0';
-                    currentContent.classList.remove('active');
-                }
-                currentSection.classList.remove('active');
-                currentSection.style.display = 'none';
-                console.log(`Hid current section: ${currentSection.id}`);
-            }
-
-            // すべてのナビゲーションリンクから active を削除
-            document.querySelectorAll('#desktop-nav a, #sidebar a').forEach(link => {
-                link.classList.remove('active');
-            });
-
-            // 新しいセクションを表示
-            const newSection = document.getElementById(sectionId);
-            if (!newSection) {
-                console.error(`Section ${sectionId} not found!`);
-                return;
-            }
-
-            const newContent = newSection.querySelector('.content-wrapper');
-            if (!newContent) {
-                console.error(`Content wrapper not found in section ${sectionId}!`);
-                console.log(`Section HTML: ${newSection.innerHTML}`);
-                return;
-            }
-
             console.log(`Showing section: ${sectionId}`);
-            newSection.style.display = 'block';
-            newSection.classList.add('active');
-            newContent.classList.add('active');
-            newContent.style.opacity = '1';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // 特定のセクションごとの処理
-            if (sectionId === 'works') {
-                displayYouTubeVideos();
-            }
-            const estimate = document.getElementById('estimate');
-            if (sectionId === 'form') {
-                estimate.classList.add('active');
-                calculateEstimate();
-            } else {
-                estimate.classList.remove('active');
+            const currentSection = document.querySelector('section.active');
+            const currentContent = currentSection ? currentSection.querySelector('.content-wrapper') : null;
+            if (currentContent) {
+                currentContent.style.opacity = '0';
+                currentContent.classList.remove('active');
             }
 
-            // ナビゲーションリンクに active を追加
-            const desktopLink = document.querySelector(`#desktop-nav a[onclick="showSection('${sectionId}')"]`);
-            const sidebarLink = document.querySelector(`#sidebar a[onclick="showSection('${sectionId}')"]`);
-            if (desktopLink) desktopLink.classList.add('active');
-            if (sidebarLink) sidebarLink.classList.add('active');
-            else console.warn(`Sidebar link for ${sectionId} not found!`);
+            setTimeout(() => {
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.remove('active');
+                    section.style.display = 'none';
+                });
+                document.querySelectorAll('#desktop-nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                document.querySelectorAll('#sidebar a').forEach(link => {
+                    link.classList.remove('active');
+                });
 
-            // サイドバーとオーバーレイを閉じる
-            try {
-                const sidebar = document.getElementById("sidebar");
-                const overlay = document.getElementById("overlay");
-                if (sidebar) sidebar.classList.remove("open");
-                else console.warn("Sidebar not found when closing!");
-                if (overlay) overlay.classList.remove("active");
-                else console.warn("Overlay not found when closing!");
-            } catch (e) {
-                console.error("Error closing sidebar/overlay:", e);
-            }
+                const newSection = document.getElementById(sectionId);
+                if (!newSection) {
+                    console.error(`Section ${sectionId} not found!`);
+                    return;
+                }
+                const newContent = newSection.querySelector('.content-wrapper');
+                newSection.style.display = 'block';
+                setTimeout(() => {
+                    newSection.classList.add('active');
+                    newContent.classList.add('active');
+                    newContent.style.opacity = '1';
+                    window.scrollTo(0, 0);
+                    if (sectionId === 'works') {
+                        displayYouTubeVideos();
+                    }
+                    const estimate = document.getElementById('estimate');
+                    if (sectionId === 'form') {
+                        estimate.classList.add('active');
+                        calculateEstimate();
+                    } else {
+                        estimate.classList.remove('active');
+                    }
+                }, 50);
 
-            console.log(`Completed showSection for: ${sectionId}`);
+                const desktopLink = document.querySelector(`#desktop-nav a[onclick="showSection('${sectionId}')"]`);
+                const sidebarLink = document.querySelector(`#sidebar a[onclick="showSection('${sectionId}')"]`);
+                if (desktopLink) desktopLink.classList.add('active');
+                if (sidebarLink) sidebarLink.classList.add('active');
+                else console.error(`Sidebar link for ${sectionId} not found!`);
+                document.getElementById("sidebar").classList.remove("open");
+                document.getElementById("overlay").classList.remove("active");
+            }, 500);
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            try {
-                const hash = window.location.hash.substring(1);
-                const validSections = ['home', 'profile', 'works', 'price', 'form', 'contact'];
-                const sectionToShow = validSections.includes(hash) ? hash : 'home';
-                console.log(`Initial section to show: ${sectionToShow}`);
-                showSection(sectionToShow);
-            } catch (e) {
-                console.error("Error in DOMContentLoaded:", e);
-            }
+            const sidebarItems = document.querySelectorAll('#sidebar a');
+            console.log("Sidebar items loaded:", sidebarItems.length);
+            sidebarItems.forEach((item, index) => {
+                console.log(`Item ${index + 1}: ${item.textContent}`);
+            });
+            const hash = window.location.hash.substring(1);
+            const validSections = ['home', 'profile', 'works', 'price', 'form', 'contact', 'thanks'];
+            const sectionToShow = validSections.includes(hash) ? hash : 'home';
+            showSection(sectionToShow);
+
+            // スワイプで閉じる機能
+            const sidebar = document.getElementById("sidebar");
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            sidebar.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            sidebar.addEventListener("touchmove", (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+            });
+
+            sidebar.addEventListener("touchend", () => {
+                if (touchStartX - touchEndX > 50 && sidebar.classList.contains("open")) {
+                    toggleSidebar();
+                }
+            });
         });
 
         function calculateEstimate() {
-            const basePrices = { "フルコーラス": 7000, "ワンコーラス": 5000 };
-            const deliveryFees = { "3日": 3000, "1週間": 2000, "2週間": 0 };
+            const basePrices = {
+                "フルコーラス": 7000,
+                "ワンコーラス": 5000
+            };
+            const deliveryFees = {
+                "3日": 3000,
+                "1週間": 2000,
+                "2週間": 0
+            };
 
             const basePrice = document.getElementById("base_price").value;
             const delivery = document.getElementById("delivery").value;
@@ -606,7 +792,7 @@
             total += deliveryFees[delivery];
 
             if (collab === "あり") {
-                total += (collabMembers - 1) * 3000;
+                total += (collabMembers - 1) * 4000;
             }
 
             const freeTracks = (collab === "あり") ? collabMembers : 1;
@@ -616,7 +802,7 @@
             total += (otherTrack > 0) ? (otherTrack) * 1000 : 0;
 
             document.getElementById("estimate").textContent = `お見積り金額: ${total.toLocaleString()}円`;
-            localStorage.setItem("estimateTotal", total);
+            return total;
         }
 
         document.getElementById("collab").addEventListener("change", function() {
@@ -644,16 +830,20 @@
         document.getElementById("mixForm").addEventListener("submit", function(e) {
             e.preventDefault();
             console.log("Form submitted, sending to Formsubmit...");
+
+            const formData = new FormData(this);
+            const totalEstimate = calculateEstimate();
+            const estimateSummary = `仮のお見積り: ${totalEstimate.toLocaleString()}円`;
             
-            calculateEstimate();
             fetch("https://formsubmit.co/buxuxuq@gmail.com", {
                 method: "POST",
-                body: new FormData(this)
+                body: formData
             })
             .then(response => {
                 if (response.ok) {
-                    console.log("Form successfully submitted, redirecting to thanks.html");
-                    window.location.href = "https://buxuxun.github.io/thanks.html";
+                    console.log("Form successfully submitted, showing thanks section");
+                    document.getElementById("estimate-summary").innerHTML = estimateSummary;
+                    showSection('thanks');
                 } else {
                     console.error("Form submission failed:", response.status);
                     alert("送信に失敗しました。もう一度お試しください。");
