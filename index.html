@@ -184,17 +184,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        #contact a {
-            color: #e67e22;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        #contact a:hover {
-            color: #ff9f43;
-        }
-        #contact p {
-            margin: 10px auto;
-        }
         @media (max-width: 768px) {
             section {
                 padding: 40px 15px 80px;
@@ -229,7 +218,7 @@
             <a href="#works" onclick="showSection('works')">works</a>
             <a href="#price" onclick="showSection('price')">price</a>
             <a href="#form" onclick="showSection('form')">form</a>
-            <a href="#contact" onclick="showSection('contact')">contact</a>
+            <!-- 'contact' タブを削除 -->
         </nav>
         <button class="hamburger" onclick="toggleSidebar()" aria-label="メニューを開く" aria-expanded="false" aria-controls="sidebar">
             <span></span>
@@ -242,7 +231,7 @@
             <a href="#works" onclick="showSection('works')">works</a>
             <a href="#price" onclick="showSection('price')">price</a>
             <a href="#form" onclick="showSection('form')">form</a>
-            <a href="#contact" onclick="showSection('contact')">contact</a>
+            <!-- 'contact' タブを削除 -->
         </nav>
         <div id="overlay" onclick="toggleSidebar()" aria-hidden="true"></div>
     </header>
@@ -405,15 +394,7 @@
                 </form>
             </div>
         </section>
-
-        <section id="contact" role="region" aria-labelledby="contact-heading">
-            <div class="content-wrapper">
-                <h2 id="contact-heading">Contact</h2>
-                <p>何かご不明な点ございましたら、直接XのDMからご連絡していただけたらと思います。</p>
-                <p>企業様は、直接メールにてご連絡ください。</p>
-                <p>X(旧Twitter): <a href="https://twitter.com/buxun" target="_blank" rel="noopener noreferrer">@buxun</a> | メールアドレス: <a href="mailto:buxuxuq@gmail.com">buxuxuq@gmail.com</a></p>
-            </div>
-        </section>
+        <!-- 'contact' セクションを削除 -->
     </main>
 
     <footer role="contentinfo">
@@ -564,7 +545,7 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             const hash = window.location.hash.substring(1);
-            const validSections = ['home', 'profile', 'works', 'price', 'form', 'contact'];
+            const validSections = ['home', 'profile', 'works', 'price', 'form']; // 'contact' を削除
             const sectionToShow = validSections.includes(hash) ? hash : 'home';
             console.log(`Initial section to show: ${sectionToShow}`);
             showSection(sectionToShow);
