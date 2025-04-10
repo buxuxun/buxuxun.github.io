@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STUDIO BUN</title>
+
+    <!-- Open Graph メタタグ -->
+    <meta property="og:title" content="STUDIO BUN">
+    <meta property="og:description" content="ミキシングエンジニア STUDIO BUN の公式サイト。プロフェッショナルなミックスであなたの音楽をサポートします。">
+    <meta property="og:image" content="https://yourdomain.com/images/mixing-console.jpg"> <!-- 画像の絶対パスを指定 -->
+    <meta property="og:url" content="https://yourdomain.com"> <!-- サイトのURLを指定 -->
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card メタタグ -->
+    <meta name="twitter:card" content="summary_large_image"> <!-- 大きな画像付きのカード -->
+    <meta name="twitter:title" content="STUDIO BUN">
+    <meta name="twitter:description" content="ミキシングエンジニア STUDIO BUN の公式サイト。プロフェッショナルなミックスであなたの音楽をサポートします。">
+    <meta name="twitter:image" content="https://yourdomain.com/images/mixing-console.jpg"> <!-- 画像の絶対パスを指定 -->
+    <meta name="twitter:site" content="@buxun"> <!-- あなたのTwitterハンドル（任意） -->
+
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Raleway:wght@300;400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -16,7 +31,7 @@
             color: #e0e0e0;
             line-height: 1.6;
             position: relative;
-            height: 100vh; /* body全体を画面高さに */
+            height: 100vh;
         }
         body::before {
             content: '';
@@ -120,24 +135,24 @@
             top: 0;
             left: -300px;
             width: 250px;
-            height: 100vh; /* 画面全体の高さに */
+            height: 100vh;
             background: #333333;
-            padding: 60px 10px 10px; /* パディング調整 */
+            padding: 60px 10px 10px;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
             transition: left 0.3s ease;
             z-index: 1001;
             overflow-y: auto;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px; /* メニュー間の間隔 */
-            align-content: start; /* 上から詰めて配置 */
+            gap: 15px;
+            align-content: start;
         }
         #sidebar a {
             color: #e0e0e0;
             text-decoration: none;
             font-family: 'Raleway', sans-serif;
             font-size: 18px;
-            padding: 15px; /* メニュー項目の高さ調整 */
+            padding: 15px;
             border-radius: 5px;
             transition: background 0.3s ease, color 0.3s ease;
             cursor: pointer;
@@ -400,7 +415,7 @@
             }
             #sidebar {
                 display: grid;
-                height: 100vh; /* スマホでも画面全体 */
+                height: 100vh;
             }
             section {
                 padding: 40px 15px 80px;
@@ -457,7 +472,6 @@
     <section id="home" class="active">
         <div class="content-wrapper active">
             <h2>HOME</h2>
-            <p>あなたの音楽を次のレベルへ。プロフェッショナルなミックスで最高のサウンドを。</p>
         </div>
     </section>
 
