@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STUDIO BUN</title>
+    <meta name="description" content="STUDIO BUN - ミックス依頼ありがとうございます">
+    <title>STUDIO BUN - ありがとう</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Raleway:wght@300;400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -96,7 +97,7 @@
             width: 40px;
             height: 40px;
             cursor: pointer;
-            z-index: 1006;
+            z-index: 1005; /* index.htmlと一致 */
             background: rgba(255, 255, 255, 0.9);
             border-radius: 5px;
             padding: 5px;
@@ -124,7 +125,7 @@
             padding: 60px 20px 20px;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
             transition: left 0.3s ease;
-            z-index: 1005;
+            z-index: 1004; /* index.htmlと一致 */
             flex-direction: column;
             overflow-y: auto;
         }
@@ -160,7 +161,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            z-index: 1002;
+            z-index: 1002; /* index.htmlと一致 */
             display: none;
         }
         #overlay.active {
@@ -231,7 +232,7 @@
             width: 100%;
             backdrop-filter: blur(15px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1001;
+            z-index: 1001; /* index.htmlと一致 */
         }
         .social-icons a {
             color: #b0b0b0;
@@ -346,7 +347,7 @@
             if (total) {
                 estimateDisplay.textContent = `お見積り金額: ${parseInt(total).toLocaleString()}円`;
             } else {
-                estimateDisplay.textContent = "お見積り金額: データなし";
+                estimateDisplay.textContent = "お見積り金額: データがありません。お手数ですがフォームから再度ご依頼ください。";
             }
         });
     </script>
