@@ -312,7 +312,7 @@
         #estimate {
             position: fixed;
             bottom: 40px;
-            right: 25%;
+            right: 30%;
             background: rgba(0, 0, 0, 0.8);
             color: #e0e0e0;
             padding: 10px 20px;
@@ -401,6 +401,12 @@
             }
             form {
                 margin-right: 0;
+            }
+            #estimate {
+                right: 10%;
+                left: auto;
+                bottom: 20px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -617,7 +623,7 @@
             "https://www.youtube.com/embed/7mWHhj0VPJk",
             "https://www.youtube.com/embed/bE2oZdUH_ps",
             "https://www.youtube.com/embed/T8keafqE69o",
-            "https://www.youtube.com/embed/y |ulgfpaPSBA",
+            "https://www.youtube.com/embed/yulgfpaPSBA",
             "https://www.youtube.com/embed/Hb7uAtVgBmA"
         ];
 
@@ -649,6 +655,23 @@
             overlay.classList.toggle("active");
             console.log("Sidebar toggled:", sidebar.classList.contains("open") ? "open" : "closed");
         }
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById("sidebar").addEventListener("touchstart", (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById("sidebar").addEventListener("touchmove", (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+        });
+
+        document.getElementById("sidebar").addEventListener("touchend", () => {
+            if (touchStartX - touchEndX > 50) {
+                toggleSidebar();
+            }
+        });
 
         function showSection(sectionId) {
             console.log(`Showing section: ${sectionId}`);
