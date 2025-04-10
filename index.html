@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STUDIO BUN - プロフェッショナルなミキシングサービスであなたの音楽を次のレベルへ">
     <title>STUDIO BUN</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Raleway:wght@300;400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -96,7 +97,7 @@
             width: 40px;
             height: 40px;
             cursor: pointer;
-            z-index: 1004;
+            z-index: 1005; /* フッターより前面 */
             background: rgba(255, 255, 255, 0.9);
             border-radius: 5px;
             padding: 5px;
@@ -124,7 +125,7 @@
             padding: 60px 20px 20px;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
             transition: left 0.3s ease;
-            z-index: 1003;
+            z-index: 1004; /* フッターより前面、オーバーレイより上 */
             flex-direction: column;
             overflow-y: auto;
         }
@@ -160,7 +161,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
+            z-index: 1002; /* フッターより上、サイドバーより下 */
             display: none;
         }
         #overlay.active {
@@ -225,6 +226,7 @@
             display: block;
             border: 2px solid #e0e0e0;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            loading: lazy; /* パフォーマンス向上 */
         }
         .youtube-videos {
             display: grid;
@@ -322,7 +324,7 @@
             font-family: 'Raleway', sans-serif;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1002;
+            z-index: 1003; /* サイドバーより下、ハンバーガーより上 */
             display: none;
         }
         #estimate.active {
@@ -350,7 +352,7 @@
             width: 100%;
             backdrop-filter: blur(15px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1001;
+            z-index: 1001; /* サイドバーやオーバーレイより下 */
         }
         .social-icons a {
             color: #b0b0b0;
@@ -382,7 +384,6 @@
             #sidebar {
                 display: flex;
                 left: -300px;
-                z-index: 1003;
             }
             #sidebar.open {
                 left: 0;
@@ -416,209 +417,211 @@
     </style>
 </head>
 <body>
-    <header>
+    <header role="banner">
         <h1>STUDIO BUN</h1>
-        <nav id="desktop-nav">
-            <a onclick="showSection('home')" class="active">home</a>
-            <a onclick="showSection('profile')">profile</a>
-            <a onclick="showSection('works')">works</a>
-            <a onclick="showSection('price')">price</a>
-            <a onclick="showSection('form')">form</a>
-            <a onclick="showSection('contact')">contact</a>
+        <nav id="desktop-nav" aria-label="メインナビゲーション">
+            <a href="#home" onclick="showSection('home')" class="active">home</a>
+            <a href="#profile" onclick="showSection('profile')">profile</a>
+            <a href="#works" onclick="showSection('works')">works</a>
+            <a href="#price" onclick="showSection('price')">price</a>
+            <a href="#form" onclick="showSection('form')">form</a>
+            <a href="#contact" onclick="showSection('contact')">contact</a>
         </nav>
-        <div class="hamburger" onclick="toggleSidebar()">
+        <button class="hamburger" onclick="toggleSidebar()" aria-label="メニューを開く" aria-expanded="false" aria-controls="sidebar">
             <span></span>
             <span></span>
             <span></span>
-        </div>
-        <nav id="sidebar">
-            <a onclick="showSection('home')" class="active">home</a>
-            <a onclick="showSection('profile')">profile</a>
-            <a onclick="showSection('works')">works</a>
-            <a onclick="showSection('price')">price</a>
-            <a onclick="showSection('form')">form</a>
-            <a onclick="showSection('contact')">contact</a>
+        </button>
+        <nav id="sidebar" role="navigation" aria-label="モバイルナビゲーション">
+            <a href="#home" onclick="showSection('home')" class="active">home</a>
+            <a href="#profile" onclick="showSection('profile')">profile</a>
+            <a href="#works" onclick="showSection('works')">works</a>
+            <a href="#price" onclick="showSection('price')">price</a>
+            <a href="#form" onclick="showSection('form')">form</a>
+            <a href="#contact" onclick="showSection('contact')">contact</a>
         </nav>
-        <div id="overlay" onclick="toggleSidebar()"></div>
+        <div id="overlay" onclick="toggleSidebar()" aria-hidden="true"></div>
     </header>
 
-    <section id="home" class="active">
-        <div class="content-wrapper active">
-            <h2>HOME</h2>
-            <p>あなたの音楽を次のレベルへ。プロフェッショナルなミックスで最高のサウンドを。</p>
-        </div>
-    </section>
+    <main>
+        <section id="home" class="active" role="region" aria-labelledby="home-heading">
+            <div class="content-wrapper active">
+                <h2 id="home-heading">HOME</h2>
+                <p>あなたの音楽を次のレベルへ。プロフェッショナルなミックスで最高のサウンドを。</p>
+            </div>
+        </section>
 
-    <section id="profile">
-        <div class="content-wrapper">
-            <h2>Profile</h2>
-            <p>
-                2011年から歌ってみたMIXを中心に活動。<br><br>
-                音楽専門学校レコーディング科を卒業後、<br>
-                レコーディングスタジオ勤務を経てミキシングエンジニアとして独立。<br><br>
-                星街すいせい／めいちゃん／花園セレナ／春茶 等数多くのミックスを担当し、<br>
-                初投稿のサポートなども積極的に行っている。<br><br>
-                過去1000件以上のミックスを担当。
-            </p>
-            <img src="images/profile.jpg" alt="Profile Image" class="profile-image">
-        </div>
-    </section>
+        <section id="profile" role="region" aria-labelledby="profile-heading">
+            <div class="content-wrapper">
+                <h2 id="profile-heading">Profile</h2>
+                <p>
+                    2011年から歌ってみたMIXを中心に活動。<br><br>
+                    音楽専門学校レコーディング科を卒業後、<br>
+                    レコーディングスタジオ勤務を経てミキシングエンジニアとして独立。<br><br>
+                    星街すいせい／めいちゃん／花園セレナ／春茶 等数多くのミックスを担当し、<br>
+                    初投稿のサポートなども積極的に行っている。<br><br>
+                    過去1000件以上のミックスを担当。
+                </p>
+                <img src="images/profile.jpg" alt="プロフィール画像" class="profile-image">
+            </div>
+        </section>
 
-    <section id="works">
-        <div class="content-wrapper">
-            <h2>Works</h2>
-            <p>主な過去の担当作品。<br>星街すいせい／めいちゃん／花園セレナ／春茶 etc..</p>
-            <div class="youtube-videos" id="youtube-videos"></div>
-        </div>
-    </section>
+        <section id="works" role="region" aria-labelledby="works-heading">
+            <div class="content-wrapper">
+                <h2 id="works-heading">Works</h2>
+                <p>主な過去の担当作品。<br>星街すいせい／めいちゃん／花園セレナ／春茶 etc..</p>
+                <div class="youtube-videos" id="youtube-videos"></div>
+            </div>
+        </section>
 
-    <section id="price">
-        <div class="content-wrapper">
-            <h2>Price</h2>
-            <p>基本料金：フルコーラス￥7,000 / ワンコーラス￥5,000</p>
-            <p>納期オプション：3日（+￥3,000） / 1週間（+￥2,000） / 2週間（+￥0）</p>
-            <p>コラボ：2人から選択可能、1人増えるごとに+￥3,000（例：コラボ2人の場合、基本料金+￥3,000、3人の場合+￥6,000）</p>
-            <p>追加料金：</p>
-            <ul>
-                <li>メイントラック：1本目無料、2本目以降1本につき+￥1,000（コラボありの場合はコラボ人数分まで無料、例：コラボ2人なら2本まで無料）</li>
-                <li>ハモリトラック：1本目無料、2本目以降1本につき+￥1,000（コラボありの場合はコラボ人数分まで無料、例：コラボ2人なら2本まで無料）</li>
-                <li>ハモリ作成：1本目から1本につき+￥1,000</li>
-                <li>その他（コーラス、合いの手など）：1本目から1本につき+￥1,000</li>
-            </ul>
-            <p>詳細なお見積りはフォームにてご確認ください。</p>
-            <p><strong style="font-size: 1.2rem;">お支払いについて</strong></p>
-            <p>お支払いを確認させていただいてから、作業開始いたします。<br>※お支払い方法は現金振込とさせていただきます。</p>
-        </div>
-    </section>
+        <section id="price" role="region" aria-labelledby="price-heading">
+            <div class="content-wrapper">
+                <h2 id="price-heading">Price</h2>
+                <p>基本料金：フルコーラス￥7,000 / ワンコーラス￥5,000</p>
+                <p>納期オプション：3日（+￥3,000） / 1週間（+￥2,000） / 2週間（+￥0）</p>
+                <p>コラボ：2人から選択可能、1人増えるごとに+￥3,000（例：コラボ2人の場合、基本料金+￥3,000、3人の場合+￥6,000）</p>
+                <p>追加料金：</p>
+                <ul>
+                    <li>メイントラック：1本目無料、2本目以降1本につき+￥1,000（コラボありの場合はコラボ人数分まで無料、例：コラボ2人なら2本まで無料）</li>
+                    <li>ハモリトラック：1本目無料、2本目以降1本につき+￥1,000（コラボありの場合はコラボ人数分まで無料、例：コラボ2人なら2本まで無料）</li>
+                    <li>ハモリ作成：1本目から1本につき+￥1,000</li>
+                    <li>その他（コーラス、合いの手など）：1本目から1本につき+￥1,000</li>
+                </ul>
+                <p>詳細なお見積りはフォームにてご確認ください。</p>
+                <p><strong style="font-size: 1.2rem;">お支払いについて</strong></p>
+                <p>お支払いを確認させていただいてから、作業開始いたします。<br>※お支払い方法は現金振込とさせていただきます。</p>
+            </div>
+        </section>
 
-    <section id="form">
-        <div class="content-wrapper">
-            <form id="mixForm" action="https://formsubmit.co/buxuxuq@gmail.com" method="POST">
-                <h2>Form</h2>
-                <label>活動名</label>
-                <input type="text" name="name" required>
-                <label>ご連絡先（XのIDもしくはメールアドレス）</label>
-                <input type="text" name="contact" required>
-                <label>基本料金</label>
-                <select name="base_price" id="base_price" required>
-                    <option value="フルコーラス">フルコーラス（￥7,000）</option>
-                    <option value="ワンコーラス">ワンコーラス（￥5,000）</option>
-                </select>
-                <label>納期</label>
-                <select name="delivery" id="delivery" required>
-                    <option value="2週間">2週間（+￥0）</option>
-                    <option value="1週間">1週間（+￥2,000）</option>
-                    <option value="3日">3日（+￥3,000）</option>
-                </select>
-                <label>コラボの有無</label>
-                <select name="collab" id="collab" required>
-                    <option value="なし">コラボなし</option>
-                    <option value="あり">コラボあり</option>
-                </select>
-                <div id="collab-members">
-                    <label>コラボ人数（1人増えるごとに+￥3,000）</label>
-                    <select name="collab_members" id="collab_members">
-                        <option value="2">2人</option>
-                        <option value="3">3人</option>
-                        <option value="4">4人</option>
-                        <option value="5">5人</option>
-                        <option value="6">6人</option>
-                        <option value="7">7人</option>
-                        <option value="8">8人</option>
-                        <option value="9">9人</option>
-                        <option value="10">10人</option>
+        <section id="form" role="region" aria-labelledby="form-heading">
+            <div class="content-wrapper">
+                <form id="mixForm" action="https://formsubmit.co/buxuxuq@gmail.com" method="POST" aria-label="ミックス依頼フォーム">
+                    <h2 id="form-heading">Form</h2>
+                    <label for="name">活動名</label>
+                    <input type="text" id="name" name="name" required aria-required="true">
+                    <label for="contact">ご連絡先（XのIDもしくはメールアドレス）</label>
+                    <input type="text" id="contact" name="contact" required aria-required="true">
+                    <label for="base_price">基本料金</label>
+                    <select id="base_price" name="base_price" required aria-required="true">
+                        <option value="フルコーラス">フルコーラス（￥7,000）</option>
+                        <option value="ワンコーラス">ワンコーラス（￥5,000）</option>
                     </select>
-                </div>
-                <label>曲名（原曲URL）</label>
-                <input type="text" name="title_url" required>
-                <label>音源データURL（ギガファイル便など）</label>
-                <input type="url" name="audio_url" required>
-                <label>参考曲URL（任意）</label>
-                <input type="url" name="ref_url">
-                <label>トラック数</label>
-                <label>メイントラック（2本目以降1本につき+￥1,000、コラボありならコラボ人数分まで無料）</label>
-                <select name="main_track" id="main_track">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <label>ハモリトラック（2本目以降1本につき+￥1,000、コラボありならコラボ人数分まで無料）</label>
-                <select name="harmony_track" id="harmony_track">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <label>ハモリトラック作成（1本につき+￥1,000）</label>
-                <select name="harmony_creation" id="harmony_creation">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <label>その他(コーラスや合いの手など)（1本につき+￥1,000）</label>
-                <select name="other_track" id="other_track">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <label>その他要望</label>
-                <textarea name="message" rows="5" placeholder="エフェクトや納期のご相談などあればどうぞ"></textarea>
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_subject" value="STUDIO BUN - 新しいミックス依頼">
-                <input type="hidden" name="_next" value="https://buxuxun.github.io/thanks.html">
-                <button type="submit">送信する</button>
-            </form>
-        </div>
-    </section>
+                    <label for="delivery">納期</label>
+                    <select id="delivery" name="delivery" required aria-required="true">
+                        <option value="2週間">2週間（+￥0）</option>
+                        <option value="1週間">1週間（+￥2,000）</option>
+                        <option value="3日">3日（+￥3,000）</option>
+                    </select>
+                    <label for="collab">コラボの有無</label>
+                    <select id="collab" name="collab" required aria-required="true">
+                        <option value="なし">コラボなし</option>
+                        <option value="あり">コラボあり</option>
+                    </select>
+                    <div id="collab-members">
+                        <label for="collab_members">コラボ人数（1人増えるごとに+￥3,000）</label>
+                        <select id="collab_members" name="collab_members">
+                            <option value="2">2人</option>
+                            <option value="3">3人</option>
+                            <option value="4">4人</option>
+                            <option value="5">5人</option>
+                            <option value="6">6人</option>
+                            <option value="7">7人</option>
+                            <option value="8">8人</option>
+                            <option value="9">9人</option>
+                            <option value="10">10人</option>
+                        </select>
+                    </div>
+                    <label for="title_url">曲名（原曲URL）</label>
+                    <input type="text" id="title_url" name="title_url" required aria-required="true">
+                    <label for="audio_url">音源データURL（ギガファイル便など）</label>
+                    <input type="url" id="audio_url" name="audio_url" required aria-required="true">
+                    <label for="ref_url">参考曲URL（任意）</label>
+                    <input type="url" id="ref_url" name="ref_url">
+                    <label for="main_track">メイントラック</label>
+                    <select id="main_track" name="main_track">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <label for="harmony_track">ハモリトラック</label>
+                    <select id="harmony_track" name="harmony_track">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <label for="harmony_creation">ハモリトラック作成</label>
+                    <select id="harmony_creation" name="harmony_creation">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <label for="other_track">その他(コーラスや合いの手など)</label>
+                    <select id="other_track" name="other_track">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <label for="message">その他要望</label>
+                    <textarea id="message" name="message" rows="5" placeholder="エフェクトや納期のご相談などあればどうぞ"></textarea>
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="STUDIO BUN - 新しいミックス依頼">
+                    <input type="hidden" name="_next" value="https://buxuxun.github.io/thanks.html">
+                    <button type="submit">送信する</button>
+                </form>
+            </div>
+        </section>
 
-    <section id="contact">
-        <div class="content-wrapper">
-            <h2>Contact</h2>
-            <p>何かご不明な点ございましたら、直接XのDMからご連絡していただけたらと思います。</p>
-            <p>企業様は、直接メールにてご連絡ください。</p><p>X(旧Twitter): <a href="https://twitter.com/buxun" target="_blank">@buxun</a> | メールアドレス: <a href="mailto:buxuxuq@gmail.com">buxuxuq@gmail.com</a></p>
-        </div>
-    </section>
+        <section id="contact" role="region" aria-labelledby="contact-heading">
+            <div class="content-wrapper">
+                <h2 id="contact-heading">Contact</h2>
+                <p>何かご不明な点ございましたら、直接XのDMからご連絡していただけたらと思います。</p>
+                <p>企業様は、直接メールにてご連絡ください。</p>
+                <p>X(旧Twitter): <a href="https://twitter.com/buxun" target="_blank" rel="noopener noreferrer">@buxun</a> | メールアドレス: <a href="mailto:buxuxuq@gmail.com">buxuxuq@gmail.com</a></p>
+            </div>
+        </section>
+    </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="social-icons">
-            <a href="https://x.com/buxun"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.youtube.com/@buxuxun"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/buxun"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/buxun" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/@buxuxun" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/buxun" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
         <p>© 2025 STUDIO BUN. All rights reserved.</p>
     </footer>
 
-    <div id="estimate">お見積り金額: 計算中...</div>
+    <div id="estimate" role="alert" aria-live="polite">お見積り金額: 計算中...</div>
 
     <script>
         const youtubeVideos = [
@@ -647,6 +650,7 @@
                 const iframe = document.createElement("iframe");
                 iframe.src = videoUrl;
                 iframe.allowFullscreen = true;
+                iframe.loading = "lazy"; // パフォーマンス向上
                 container.appendChild(iframe);
             });
         }
@@ -654,9 +658,12 @@
         function toggleSidebar() {
             const sidebar = document.getElementById("sidebar");
             const overlay = document.getElementById("overlay");
+            const hamburger = document.querySelector(".hamburger");
             sidebar.classList.toggle("open");
             overlay.classList.toggle("active");
-            console.log("Sidebar toggled:", sidebar.classList.contains("open") ? "open" : "closed");
+            const isOpen = sidebar.classList.contains("open");
+            hamburger.setAttribute("aria-expanded", isOpen);
+            console.log("Sidebar toggled:", isOpen ? "open" : "closed");
         }
 
         let touchStartX = 0;
@@ -708,7 +715,7 @@
                     newSection.classList.add('active');
                     newContent.classList.add('active');
                     newContent.style.opacity = '1';
-                    window.scrollTo(0, 0);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     if (sectionId === 'works') {
                         displayYouTubeVideos();
                     }
@@ -732,11 +739,6 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            const sidebarItems = document.querySelectorAll('#sidebar a');
-            console.log("Sidebar items loaded:", sidebarItems.length);
-            sidebarItems.forEach((item, index) => {
-                console.log(`Item ${index + 1}: ${item.textContent}`);
-            });
             const hash = window.location.hash.substring(1);
             const validSections = ['home', 'profile', 'works', 'price', 'form', 'contact'];
             const sectionToShow = validSections.includes(hash) ? hash : 'home';
@@ -744,15 +746,8 @@
         });
 
         function calculateEstimate() {
-            const basePrices = {
-                "フルコーラス": 7000,
-                "ワンコーラス": 5000
-            };
-            const deliveryFees = {
-                "3日": 3000,
-                "1週間": 2000,
-                "2週間": 0
-            };
+            const basePrices = { "フルコーラス": 7000, "ワンコーラス": 5000 };
+            const deliveryFees = { "3日": 3000, "1週間": 2000, "2週間": 0 };
 
             const basePrice = document.getElementById("base_price").value;
             const delivery = document.getElementById("delivery").value;
