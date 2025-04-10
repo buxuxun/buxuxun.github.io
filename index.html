@@ -463,29 +463,38 @@
             const sidebar = document.getElementById("sidebar");
             const overlay = document.getElementById("overlay");
             const hamburger = document.querySelector(".hamburger");
-            sidebar.classList.toggle("open");
-            overlay.classList.toggle("active");
-            const isOpen = sidebar.classList.contains("open");
-            hamburger.setAttribute("aria-expanded", isOpen);
-            console.log("Sidebar toggled:", isOpen ? "open" : "closed");
+            if (sidebar && overlay && hamburger) {
+                sidebar.classList.toggle("open");
+                overlay.classList.toggle("active");
+                const isOpen = sidebar.classList.contains("open");
+                hamburger.setAttribute("aria-expanded", isOpen);
+                console.log("Sidebar toggled:", isOpen ? "open" : "closed");
+            } else {
+                console.error("Sidebar, overlay, or hamburger not found!");
+            }
         }
 
         let touchStartX = 0;
         let touchEndX = 0;
 
-        document.getElementById("sidebar").addEventListener("touchstart", (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
+        const sidebarElement = document.getElementById("sidebar");
+        if (sidebarElement) {
+            sidebarElement.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
 
-        document.getElementById("sidebar").addEventListener("touchmove", (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-        });
+            sidebarElement.addEventListener("touchmove", (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+            });
 
-        document.getElementById("sidebar").addEventListener("touchend", () => {
-            if (touchStartX - touchEndX > 50) {
-                toggleSidebar();
-            }
-        });
+            sidebarElement.addEventListener("touchend", () => {
+                if (touchStartX - touchEndX > 50) {
+                    toggleSidebar();
+                }
+            });
+        } else {
+            console.error("Sidebar element not found for touch events!");
+        }
 
         function showSection(sectionId) {
             console.log(`Showing section: ${sectionId}`);
@@ -537,8 +546,19 @@
                 if (desktopLink) desktopLink.classList.add('active');
                 if (sidebarLink) sidebarLink.classList.add('active');
                 else console.error(`Sidebar link for ${sectionId} not found!`);
-                document.getElementById("sidebar").classList.remove("open");
-                document.getElementById("overlay").classList.remove("active");
+
+                const sidebar = document.getElementById("sidebar");
+                const overlay = document.getElementById("overlay");
+                if (sidebar) {
+                    sidebar.classList.remove("open");
+                } else {
+                    console.error("Sidebar element not found!");
+                }
+                if (overlay) {
+                    overlay.classList.remove("active");
+                } else {
+                    console.error("Overlay element not found!");
+                }
             }, 500);
         }
 
@@ -546,7 +566,7 @@
             const hash = window.location.hash.substring(1);
             const validSections = ['home', 'profile', 'works', 'price', 'form', 'contact'];
             const sectionToShow = validSections.includes(hash) ? hash : 'home';
-            console.log(`Initial section to show: ${sectionToShow}`); // 初期表示の確認
+            console.log(`Initial section to show: ${sectionToShow}`);
             showSection(sectionToShow);
         });
 
