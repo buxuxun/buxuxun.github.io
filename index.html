@@ -461,17 +461,21 @@
         }
 
         function toggleSidebar() {
-            const sidebar = document.getElementById("sidebar");
-            const overlay = document.getElementById("overlay");
-            const hamburger = document.querySelector(".hamburger");
-            if (sidebar && overlay && hamburger) {
-                sidebar.classList.toggle("open");
-                overlay.classList.toggle("active");
-                const isOpen = sidebar.classList.contains("open");
-                hamburger.setAttribute("aria-expanded", isOpen);
-                console.log("Sidebar toggled:", isOpen ? "open" : "closed");
-            } else {
-                console.error("Sidebar, overlay, or hamburger not found!");
+            try {
+                const sidebar = document.getElementById("sidebar");
+                const overlay = document.getElementById("overlay");
+                const hamburger = document.querySelector(".hamburger");
+                if (sidebar && overlay && hamburger) {
+                    sidebar.classList.toggle("open");
+                    overlay.classList.toggle("active");
+                    const isOpen = sidebar.classList.contains("open");
+                    hamburger.setAttribute("aria-expanded", isOpen);
+                    console.log("Sidebar toggled:", isOpen ? "open" : "closed");
+                } else {
+                    console.error("Sidebar, overlay, or hamburger not found!");
+                }
+            } catch (e) {
+                console.error("Error in toggleSidebar:", e);
             }
         }
 
@@ -499,76 +503,79 @@
 
         function showSection(sectionId) {
             console.log(`Showing section: ${sectionId}`);
-            const currentSection = document.querySelector('section.active');
-            const currentContent = currentSection ? currentSection.querySelector('.content-wrapper') : null;
-            if (currentContent) {
-                currentContent.style.opacity = '0';
-                currentContent.classList.remove('active');
-            }
-
-            setTimeout(() => {
-                document.querySelectorAll('section').forEach(section => {
-                    section.classList.remove('active');
-                    section.style.display = 'none';
-                });
-                document.querySelectorAll('#desktop-nav a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                document.querySelectorAll('#sidebar a').forEach(link => {
-                    link.classList.remove('active');
-                });
-
-                const newSection = document.getElementById(sectionId);
-                if (!newSection) {
-                    console.error(`Section ${sectionId} not found!`);
-                    return;
+            try {
+                const currentSection = document.querySelector('section.active');
+                const currentContent = currentSection ? currentSection.querySelector('.content-wrapper') : null;
+                if (currentContent) {
+                    currentContent.style.opacity = '0';
+                    currentContent.classList.remove('active');
                 }
-                const newContent = newSection.querySelector('.content-wrapper');
-                newSection.style.display = 'block';
+
                 setTimeout(() => {
-                    newSection.classList.add('active');
-                    newContent.classList.add('active');
-                    newContent.style.opacity = '1';
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    if (sectionId === 'works') {
-                        displayYouTubeVideos();
-                    }
-                    const estimate = document.getElementById('estimate');
-                    if (sectionId === 'form') {
-                        estimate.classList.add('active');
-                        calculateEstimate();
-                    } else {
-                        estimate.classList.remove('active');
-                    }
-                }, 50);
+                    document.querySelectorAll('section').forEach(section => {
+                        section.classList.remove('active');
+                        section.style.display = 'none';
+                    });
+                    document.querySelectorAll('#desktop-nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    document.querySelectorAll('#sidebar a').forEach(link => {
+                        link.classList.remove('active');
+                    });
 
-                const desktopLink = document.querySelector(`#desktop-nav a[onclick="showSection('${sectionId}')"]`);
-                const sidebarLink = document.querySelector(`#sidebar a[onclick="showSection('${sectionId}')"]`);
-                if (desktopLink) desktopLink.classList.add('active');
-                if (sidebarLink) sidebarLink.classList.add('active');
-                else console.error(`Sidebar link for ${sectionId} not found!`);
+                    const newSection = document.getElementById(sectionId);
+                    if (!newSection) {
+                        console.error(`Section ${sectionId} not found!`);
+                        return;
+                    }
+                    const newContent = newSection.querySelector('.content-wrapper');
+                    newSection.style.display = 'block';
+                    setTimeout(() => {
+                        newSection.classList.add('active');
+                        newContent.classList.add('active');
+                        newContent.style.opacity = '1';
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        if (sectionId === 'works') {
+                            displayYouTubeVideos();
+                        }
+                        const estimate = document.getElementById('estimate');
+                        if (sectionId === 'form') {
+                            estimate.classList.add('active');
+                            calculateEstimate();
+                        } else {
+                            estimate.classList.remove('active');
+                        }
+                    }, 50);
 
-                const sidebar = document.getElementById("sidebar");
-                const overlay = document.getElementById("overlay");
-                if (sidebar) {
-                    sidebar.classList.remove("open");
-                } else {
-                    console.error("Sidebar element not found!");
-                }
-                if (overlay) {
-                    overlay.classList.remove("active");
-                } else {
-                    console.error("Overlay element not found!");
-                }
-            }, 500);
+                    const desktopLink = document.querySelector(`#desktop-nav a[onclick="showSection('${sectionId}')"]`);
+                    const sidebarLink = document.querySelector(`#sidebar a[onclick="showSection('${sectionId}')"]`);
+                    if (desktopLink) desktopLink.classList.add('active');
+                    if (sidebarLink) sidebarLink.classList.add('active');
+                    else console.error(`Sidebar link for ${sectionId} not found!`);
+
+                    // サイドバーとオーバーレイの処理を安全に
+                    const sidebar = document.getElementById("sidebar");
+                    const overlay = document.getElementById("overlay");
+                    if (sidebar) sidebar.classList.remove("open");
+                    else console.warn("Sidebar element not found during section switch!");
+                    if (overlay) overlay.classList.remove("active");
+                    else console.warn("Overlay element not found during section switch!");
+                }, 500);
+            } catch (e) {
+                console.error("Error in showSection:", e);
+            }
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            const hash = window.location.hash.substring(1);
-            const validSections = ['home', 'profile', 'works', 'price', 'form', 'contact'];
-            const sectionToShow = validSections.includes(hash) ? hash : 'home';
-            console.log(`Initial section to show: ${sectionToShow}`);
-            showSection(sectionToShow);
+            try {
+                const hash = window.location.hash.substring(1);
+                const validSections = ['home', 'profile', 'works', 'price', 'form', 'contact'];
+                const sectionToShow = validSections.includes(hash) ? hash : 'home';
+                console.log(`Initial section to show: ${sectionToShow}`);
+                showSection(sectionToShow);
+            } catch (e) {
+                console.error("Error in DOMContentLoaded:", e);
+            }
         });
 
         function calculateEstimate() {
