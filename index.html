@@ -124,7 +124,7 @@
             padding: 60px 20px 20px;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
             transition: left 0.3s ease;
-            z-index: 1001;
+            z-index: 1003;
             flex-direction: column;
             overflow-y: auto;
         }
@@ -312,7 +312,7 @@
         #estimate {
             position: fixed;
             bottom: 40px;
-            right: 30%;
+            right: 25%;
             background: rgba(0, 0, 0, 0.8);
             color: #e0e0e0;
             padding: 10px 20px;
@@ -344,7 +344,7 @@
             background: rgba(0, 0, 0, 0.3);
             color: #b0b0b0;
             text-align: center;
-            padding: 15px;
+            padding: 10.5px;
             position: fixed;
             bottom: 0;
             width: 100%;
@@ -617,7 +617,7 @@
             "https://www.youtube.com/embed/7mWHhj0VPJk",
             "https://www.youtube.com/embed/bE2oZdUH_ps",
             "https://www.youtube.com/embed/T8keafqE69o",
-            "https://www.youtube.com/embed/yulgfpaPSBA",
+            "https://www.youtube.com/embed/y |ulgfpaPSBA",
             "https://www.youtube.com/embed/Hb7uAtVgBmA"
         ];
 
@@ -751,6 +751,7 @@
             total += (otherTrack > 0) ? (otherTrack) * 1000 : 0;
 
             document.getElementById("estimate").textContent = `お見積り金額: ${total.toLocaleString()}円`;
+            localStorage.setItem("estimateTotal", total);
         }
 
         document.getElementById("collab").addEventListener("change", function() {
@@ -779,6 +780,7 @@
             e.preventDefault();
             console.log("Form submitted, sending to Formsubmit...");
             
+            calculateEstimate();
             fetch("https://formsubmit.co/buxuxuq@gmail.com", {
                 method: "POST",
                 body: new FormData(this)
