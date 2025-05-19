@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STUDIO BUN</title>
-    <!-- メタタグにSEO強化を追加 -->
     <meta name="description" content="STUDIO BUNは歌ってみたミキシングを専門とするエンジニアです。リーズナブルな価格で高品質なミックスを提供します。">
     <meta name="keywords" content="歌ってみた, ミキシング, STUDIO BUN, 音楽制作, レコーディング">
 
@@ -220,7 +219,7 @@
             z-index: 1;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
-        section p, section ul {
+        section p, section ul, section pre {
             max-width: 700px;
             margin: 0 auto 30px;
             position: relative;
@@ -262,6 +261,19 @@
             border: none;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        /* テンプレート用のスタイル */
+        .request-template {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border: 1px solid #444;
+            border-radius: 10px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            color: #e0e0e0;
+            white-space: pre-wrap;
+            text-align: left;
+            overflow-x: auto;
         }
         footer {
             background: rgba(0, 0, 0, 0.3);
@@ -319,6 +331,10 @@
                 width: 100%;
                 height: auto;
             }
+            .request-template {
+                font-size: 12px;
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -350,8 +366,6 @@
     <section id="home" class="active">
         <div class="content-wrapper active">
             <h2>HOME</h2>
-            <p>STUDIO BUNへようこそ！歌ってみたのミキシングを高品質かつリーズナブルにご提供します。<br>
-               <a href="https://x.com/buxun" target="_blank" style="color: #e67e22;">XのDMで今すぐ依頼する</a></p>
         </div>
     </section>
 
@@ -391,17 +405,31 @@
                 <li>ハモリ作成：1本目から1本につき+￥1,000</li>
                 <li>その他（コーラス、合いの手など）：1本目から1本につき+￥1,000</li>
             </ul>
-            <p>詳細なお見積りは<a href="https://x.com/buxun" target="_blank" style="color: #e67e22; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">XのDM</a>にてご連絡ください。</p>
             <p><strong style="font-size: 1.2rem;">お支払いについて</strong></p>
             <p>お支払いを確認させていただいてから、作業開始いたします。<br>※お支払い方法は現金振込とさせていただきます。</p>
         </div>
     </section>
 
+    <!-- コンタクトセクション：テンプレートから「参考曲URL」を削除、基本料金の価格情報を削除 -->
     <section id="contact">
         <div class="content-wrapper">
             <h2>Contact</h2>
-            <p><strong>ご依頼はXのDMからお願いします！</strong></p>
-            <p>料金や納期、音源のご相談など、気軽に<a href="https://x.com/buxun" target="_blank" style="color: #e67e22; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">@buxun</a>までDMください。折り返しご連絡いたします。</p>
+            <p>ご依頼の際は、下記テンプレートをご利用の上、XのDMにてご連絡お願いいたします。</p>
+            <pre class="request-template">
+お名前: 
+ご連絡先（XのIDまたはメールアドレス）: 
+基本料金: [フルコーラス/ワンコーラス]
+納期: [2週間/1週間/3日]
+コラボの有無: [なし/あり]
+コラボ人数: [2人/3人/4人/…/10人]
+曲名（原曲URL）: 
+音源URL（ギガファイル便など）: 
+メイントラック数: [1/2/3/…/10]
+ハモリトラック数: [0/1/2/…/10]
+ハモリトラック作成数: [0/1/2/…/10]
+その他（コーラスや合いの手など）: [0/1/2/…/10]
+その他要望: 
+            </pre>
             <p>企業様は、直接メールにてご連絡ください。</p>
             <p>X: <a href="https://x.com/buxun" target="_blank">@buxun</a> | メールアドレス: <a href="mailto:buxuxuq@gmail.com">buxuxuq@gmail.com</a></p>
         </div>
