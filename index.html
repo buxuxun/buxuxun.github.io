@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STUDIO BUN</title>
+    <!-- メタタグにSEO強化を追加 -->
+    <meta name="description" content="STUDIO BUNは歌ってみたミキシングを専門とするエンジニアです。リーズナブルな価格で高品質なミックスを提供します。">
+    <meta name="keywords" content="歌ってみた, ミキシング, STUDIO BUN, 音楽制作, レコーディング">
 
     <!-- Open Graph メタタグ -->
     <meta property="og:title" content="STUDIO BUN">
@@ -217,7 +220,7 @@
             z-index: 1;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
-        section p, section ul, section form {
+        section p, section ul {
             max-width: 700px;
             margin: 0 auto 30px;
             position: relative;
@@ -259,123 +262,6 @@
             border: none;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-        form h2 {
-            text-align: center;
-            color: #e0e0e0;
-            margin-bottom: 1.5rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
-        label {
-            display: block;
-            margin-top: 1rem;
-            color: #e0e0e0;
-            font-family: 'Raleway', sans-serif;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        input[type="text"], input[type="url"], select, textarea {
-            width: 100%;
-            padding: 0.75rem;
-            margin-top: 0.5rem;
-            border: 1px solid #444;
-            border-radius: 5px;
-            background: #ffffff;
-            color: #333333;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
-            box-sizing: border-box;
-            transition: border 0.3s ease;
-        }
-        input[type="text"]::placeholder, input[type="url"]::placeholder, textarea::placeholder {
-            color: #999999;
-        }
-        select.main-select {
-            width: 50%;
-        }
-        select.number-select {
-            width: 25%;
-        }
-        input[type="text"]:focus, input[type="url"]:focus, select:focus, textarea:focus {
-            border: 1px solid #e0e0e0;
-            outline: none;
-        }
-        textarea {
-            height: 150px;
-            resize: none;
-        }
-        button[type="submit"] {
-            background-color: #6c63ff;
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 1.5rem auto 0;
-            display: block;
-            width: 50%;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-        }
-        button[type="submit"]:hover {
-            background-color: #574fd6;
-            transform: translateY(-2px);
-        }
-        #estimate {
-            position: fixed;
-            bottom: 40px;
-            right: 30%;
-            background: rgba(0, 0, 0, 0.8);
-            color: #e0e0e0;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            font-family: 'Raleway', sans-serif;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1002;
-            display: none;
-        }
-        #estimate.active {
-            display: block;
-        }
-        #collab-members {
-            max-height: 0;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        #collab-members.show {
-            max-height: 100px;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        #estimate-summary {
-            border: 2px solid #e0e0e0;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 500px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
         }
         footer {
             background: rgba(0, 0, 0, 0.3);
@@ -433,45 +319,39 @@
                 width: 100%;
                 height: auto;
             }
-            form {
-                margin-right: 0;
-            }
-            #estimate {
-                right: 10%;
-            }
         }
     </style>
 </head>
 <body>
     <header>
         <h1>STUDIO BUN</h1>
-        <nav id="desktop-nav">
+        <nav id="desktop-nav" aria-label="メインナビゲーション">
             <a onclick="showSection('home')" class="active">home</a>
             <a onclick="showSection('profile')">profile</a>
             <a onclick="showSection('works')">works</a>
             <a onclick="showSection('price')">price</a>
-            <a onclick="showSection('form')">form</a>
             <a onclick="showSection('contact')">contact</a>
         </nav>
-        <div class="hamburger" onclick="toggleSidebar()">
+        <button class="hamburger" onclick="toggleSidebar()" aria-label="メニューを開く" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
-        </div>
-        <nav id="sidebar">
+        </button>
+        <nav id="sidebar" aria-label="サイドバーナビゲーション">
             <a onclick="showSection('home')" class="active">home</a>
             <a onclick="showSection('profile')">profile</a>
             <a onclick="showSection('works')">works</a>
             <a onclick="showSection('price')">price</a>
-            <a onclick="showSection('form')">form</a>
             <a onclick="showSection('contact')">contact</a>
         </nav>
-        <div id="overlay" onclick="toggleSidebar()"></div>
+        <div id="overlay" onclick="toggleSidebar()" aria-hidden="true"></div>
     </header>
 
     <section id="home" class="active">
         <div class="content-wrapper active">
             <h2>HOME</h2>
+            <p>STUDIO BUNへようこそ！歌ってみたのミキシングを高品質かつリーズナブルにご提供します。<br>
+               <a href="https://x.com/buxun" target="_blank" style="color: #e67e22;">XのDMで今すぐ依頼する</a></p>
         </div>
     </section>
 
@@ -511,138 +391,19 @@
                 <li>ハモリ作成：1本目から1本につき+￥1,000</li>
                 <li>その他（コーラス、合いの手など）：1本目から1本につき+￥1,000</li>
             </ul>
-            <p>詳細なお見積りは<a onclick="showSection('form')" style="cursor: pointer; color: #e67e22; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Form</a>にてご確認ください。</p>
+            <p>詳細なお見積りは<a href="https://x.com/buxun" target="_blank" style="color: #e67e22; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">XのDM</a>にてご連絡ください。</p>
             <p><strong style="font-size: 1.2rem;">お支払いについて</strong></p>
             <p>お支払いを確認させていただいてから、作業開始いたします。<br>※お支払い方法は現金振込とさせていただきます。</p>
-        </div>
-    </section>
-
-    <section id="form">
-        <div class="content-wrapper">
-            <form id="mixForm" action="https://formsubmit.co/buxuxuq@gmail.com" method="POST">
-                <h2>Form</h2>
-                <label>お名前</label>
-                <input type="text" name="お名前" placeholder="ぶん" required>
-                <label>ご連絡先（XのIDもしくはメールアドレス）</label>
-                <input type="text" name="ご連絡先（XのIDもしくはメールアドレス）" placeholder="buxun" required>
-                <label>基本料金</label>
-                <select name="基本料金" id="base_price" class="main-select" required>
-                    <option value="フルコーラス">フルコーラス（￥7,000）</option>
-                    <option value="ワンコーラス">ワンコーラス（￥5,000）</option>
-                </select>
-                <label>納期</label>
-                <select name="納期" id="delivery" class="main-select" required>
-                    <option value="2週間">2週間（+￥0）</option>
-                    <option value="1週間">1週間（+￥2,000）</option>
-                    <option value="3日">3日（+￥4,000）</option>
-                </select>
-                <label>コラボの有無</label>
-                <select name="コラボの有無" id="collab" class="main-select" required>
-                    <option value="なし">コラボなし</option>
-                    <option value="あり">コラボあり</option>
-                </select>
-                <div id="collab-members">
-                    <label>コラボ人数（1人増えるごとに+￥4,000）</label>
-                    <select name="コラボ人数" id="collab_members" class="number-select">
-                        <option value="2">2人</option>
-                        <option value="3">3人</option>
-                        <option value="4">4人</option>
-                        <option value="5">5人</option>
-                        <option value="6">6人</option>
-                        <option value="7">7人</option>
-                        <option value="8">8人</option>
-                        <option value="9">9人</option>
-                        <option value="10">10人</option>
-                    </select>
-                </div>
-                <label>曲名（原曲URL）</label>
-                <input type="text" name="曲名" placeholder="GLIDE（https://www.youtube.com/watch?v=JhYUena5eTs&ab）" required>
-                <label>音源URL（ギガファイル便など）</label>
-                <input type="text" name="音源" placeholder="https://gigafile.nu/" required>
-                <label>参考曲URL（任意）</label>
-                <input type="text" name="参考曲" placeholder="https://www.youtube.com/watch?v=BTboTXKWv80&ab">
-                <label>トラック数</label>
-                <label>メイントラック（2本目以降1本につき+￥1,000、コラボありならコラボ人数分まで無料）</label>
-                <select name="メイントラック" id="main_track" class="number-select">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <label>ハモリトラック（2本目以降1本につき+￥1,000、コラボありならコラボ人数分まで無料）</label>
-                <select name="ハモリトラック" id="harmony_track" class="number-select">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <label>ハモリトラック作成（1本につき+￥1,000）</label>
-                <select name="ハモリトラック作成" id="harmony_creation" class="number-select">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <label>その他(コーラスや合いの手など)（1本につき+￥1,000）</label>
-                <select name="その他(コーラスや合いの手など)" id="other_track" class="number-select">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <label>その他要望</label>
-                <textarea name="その他要望" rows="5" placeholder="エフェクトや納期のご相談などあればどうぞ"></textarea>
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_subject" value="STUDIO BUN - 新しいミックス依頼">
-                <button type="submit">送信する</button>
-            </form>
         </div>
     </section>
 
     <section id="contact">
         <div class="content-wrapper">
             <h2>Contact</h2>
-            <p>ご依頼はこちらの<a onclick="showSection('form')" style="cursor: pointer; color: #e67e22; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Form</a>から</p>
-            <p>何かご不明な点ございましたら、直接XのDMからご連絡していただけたらと思います。</p>
+            <p><strong>ご依頼はXのDMからお願いします！</strong></p>
+            <p>料金や納期、音源のご相談など、気軽に<a href="https://x.com/buxun" target="_blank" style="color: #e67e22; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">@buxun</a>までDMください。折り返しご連絡いたします。</p>
             <p>企業様は、直接メールにてご連絡ください。</p>
-            <p>X(旧Twitter): <a href="https://twitter.com/buxun" target="_blank">@buxun</a> | メールアドレス: <a href="mailto:buxuxuq@gmail.com">buxuxuq@gmail.com</a></p>
-        </div>
-    </section>
-
-    <section id="thanks">
-        <div class="content-wrapper">
-            <h2>ありがとうございます</h2>
-            <p>ご依頼いただき、ありがとうございます。</p>
-            <p>仮のお見積りはこちらです</p>
-            <div id="estimate-summary"></div>
-            <p>アップロードしていただいた音源を確認後、正確なお見積りを作成し、こちらからご連絡いたします。</p>
+            <p>X: <a href="https://x.com/buxun" target="_blank">@buxun</a> | メールアドレス: <a href="mailto:buxuxuq@gmail.com">buxuxuq@gmail.com</a></p>
         </div>
     </section>
 
@@ -654,8 +415,6 @@
         </div>
         <p>© 2025 STUDIO BUN. All rights reserved.</p>
     </footer>
-
-    <div id="estimate">お見積り金額: 計算中...</div>
 
     <script>
         const youtubeVideos = [
@@ -693,7 +452,9 @@
             const overlay = document.getElementById("overlay");
             sidebar.classList.toggle("open");
             overlay.classList.toggle("active");
-            console.log("Sidebar toggled:", sidebar.classList.contains("open") ? "open" : "closed");
+            const isOpen = sidebar.classList.contains("open");
+            document.querySelector(".hamburger").setAttribute("aria-expanded", isOpen);
+            console.log("Sidebar toggled:", isOpen ? "open" : "closed");
         }
 
         function showSection(sectionId) {
@@ -732,13 +493,6 @@
                     if (sectionId === 'works') {
                         displayYouTubeVideos();
                     }
-                    const estimate = document.getElementById('estimate');
-                    if (sectionId === 'form') {
-                        estimate.classList.add('active');
-                        calculateEstimate();
-                    } else {
-                        estimate.classList.remove('active');
-                    }
                 }, 50);
 
                 const desktopLink = document.querySelector(`#desktop-nav a[onclick="showSection('${sectionId}')"]`);
@@ -758,7 +512,7 @@
                 console.log(`Item ${index + 1}: ${item.textContent}`);
             });
             const hash = window.location.hash.substring(1);
-            const validSections = ['home', 'profile', 'works', 'price', 'form', 'contact', 'thanks'];
+            const validSections = ['home', 'profile', 'works', 'price', 'contact'];
             const sectionToShow = validSections.includes(hash) ? hash : 'home';
             showSection(sectionToShow);
 
@@ -779,93 +533,6 @@
                 if (touchStartX - touchEndX > 50 && sidebar.classList.contains("open")) {
                     toggleSidebar();
                 }
-            });
-        });
-
-        function calculateEstimate() {
-            const basePrices = {
-                "フルコーラス": 7000,
-                "ワンコーラス": 5000
-            };
-            const deliveryFees = {
-                "3日": 4000,
-                "1週間": 2000,
-                "2週間": 0
-            };
-
-            const basePrice = document.getElementById("base_price").value;
-            const delivery = document.getElementById("delivery").value;
-            const collab = document.getElementById("collab").value;
-            const collabMembers = parseInt(document.getElementById("collab_members").value) || 0;
-            const mainTrack = parseInt(document.getElementById("main_track").value);
-            const harmonyTrack = parseInt(document.getElementById("harmony_track").value);
-            const harmonyCreation = parseInt(document.getElementById("harmony_creation").value);
-            const otherTrack = parseInt(document.getElementById("other_track").value);
-
-            let total = basePrices[basePrice];
-            total += deliveryFees[delivery];
-
-            if (collab === "あり") {
-                total += (collabMembers - 1) * 4000;
-            }
-
-            const freeTracks = (collab === "あり") ? collabMembers : 1;
-            total += (mainTrack > freeTracks) ? (mainTrack - freeTracks) * 1000 : 0;
-            total += (harmonyTrack > freeTracks) ? (harmonyTrack - freeTracks) * 1000 : 0;
-            total += (harmonyCreation > 0) ? (harmonyCreation) * 1000 : 0;
-            total += (otherTrack > 0) ? (otherTrack) * 1000 : 0;
-
-            document.getElementById("estimate").textContent = `お見積り金額: ${total.toLocaleString()}円`;
-            return total;
-        }
-
-        document.getElementById("collab").addEventListener("change", function() {
-            const collabMembersDiv = document.getElementById("collab-members");
-            if (this.value === "あり") {
-                collabMembersDiv.classList.add("show");
-            } else {
-                collabMembersDiv.classList.remove("show");
-            }
-            calculateEstimate();
-        });
-
-        document.getElementById("form").addEventListener("click", function() {
-            document.getElementById("base_price").addEventListener("change", calculateEstimate);
-            document.getElementById("delivery").addEventListener("change", calculateEstimate);
-            document.getElementById("collab").addEventListener("change", calculateEstimate);
-            document.getElementById("collab_members").addEventListener("change", calculateEstimate);
-            document.getElementById("main_track").addEventListener("change", calculateEstimate);
-            document.getElementById("harmony_track").addEventListener("change", calculateEstimate);
-            document.getElementById("harmony_creation").addEventListener("change", calculateEstimate);
-            document.getElementById("other_track").addEventListener("change", calculateEstimate);
-            calculateEstimate();
-        });
-
-        document.getElementById("mixForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-            console.log("Form submitted, sending to Formsubmit...");
-
-            const formData = new FormData(this);
-            const totalEstimate = calculateEstimate();
-            const estimateSummary = `仮のお見積り: ${totalEstimate.toLocaleString()}円`;
-            
-            fetch("https://formsubmit.co/buxuxuq@gmail.com", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log("Form successfully submitted, showing thanks section");
-                    document.getElementById("estimate-summary").innerHTML = estimateSummary;
-                    showSection('thanks');
-                } else {
-                    console.error("Form submission failed:", response.status);
-                    alert("送信に失敗しました。もう一度お試しください。");
-                }
-            })
-            .catch(error => {
-                console.error("Error during form submission:", error);
-                alert("エラーが発生しました。後でもう一度お試しください。");
             });
         });
     </script>
