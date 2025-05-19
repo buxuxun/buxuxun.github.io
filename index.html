@@ -275,6 +275,23 @@
             text-align: left;
             overflow-x: auto;
         }
+        /* コピーボタンのスタイル */
+        .copy-button {
+            background: #e67e22;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+        .copy-button:hover {
+            background: #ff9f43;
+        }
         footer {
             background: rgba(0, 0, 0, 0.3);
             color: #b0b0b0;
@@ -334,6 +351,10 @@
             .request-template {
                 font-size: 12px;
                 padding: 15px;
+            }
+            .copy-button {
+                font-size: 12px;
+                padding: 8px 16px;
             }
         }
     </style>
@@ -410,14 +431,11 @@
         </div>
     </section>
 
-    <!-- コンタクトセクション：テンプレートから「参考曲URL」を削除、基本料金の価格情報を削除 -->
     <section id="contact">
         <div class="content-wrapper">
             <h2>Contact</h2>
-            <p>ご依頼の際は、下記テンプレートをご利用の上、XのDMにてご連絡お願いいたします。</p>
-            <pre class="request-template">
-お名前: 
-ご連絡先（XのIDまたはメールアドレス）: 
+            <p>下記テンプレートをご利用の上<a href="https://x.com/buxun" target="_blank" style="color: #e67e22; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">XのDM</a>にてご連絡お願いいたします。</p>
+            <pre class="request-template">お名前: 
 基本料金: [フルコーラス/ワンコーラス]
 納期: [2週間/1週間/3日]
 コラボの有無: [なし/あり]
@@ -428,8 +446,8 @@
 ハモリトラック数: [0/1/2/…/10]
 ハモリトラック作成数: [0/1/2/…/10]
 その他（コーラスや合いの手など）: [0/1/2/…/10]
-その他要望: 
-            </pre>
+その他要望: </pre>
+            <button class="copy-button" onclick="copyTemplate()">テンプレートをコピー</button>
             <p>企業様は、直接メールにてご連絡ください。</p>
             <p>X: <a href="https://x.com/buxun" target="_blank">@buxun</a> | メールアドレス: <a href="mailto:buxuxuq@gmail.com">buxuxuq@gmail.com</a></p>
         </div>
@@ -445,6 +463,16 @@
     </footer>
 
     <script>
+        // テンプレートをクリップボードにコピーする関数
+        function copyTemplate() {
+            const template = document.querySelector('.request-template').innerText;
+            navigator.clipboard.writeText(template).then(() => {
+                alert('テンプレートをコピーしました！');
+            }).catch(() => {
+                alert('コピーに失敗しました。手動でコピーしてください。');
+            });
+        }
+
         const youtubeVideos = [
             "https://www.youtube.com/embed/8zi1M5N3XEU",
             "https://www.youtube.com/embed/7mWHhj0VPJk",
@@ -482,11 +510,11 @@
             overlay.classList.toggle("active");
             const isOpen = sidebar.classList.contains("open");
             document.querySelector(".hamburger").setAttribute("aria-expanded", isOpen);
-            console.log("Sidebar toggled:", isOpen ? "open" : "closed");
+            console.log("サイドバーの状態:", isOpen ? "開" : "閉");
         }
 
         function showSection(sectionId) {
-            console.log(`Showing section: ${sectionId}`);
+            console.log(`セクション表示: ${sectionId}`);
             const currentSection = document.querySelector('section.active');
             const currentContent = currentSection ? currentSection.querySelector('.content-wrapper') : null;
             if (currentContent) {
@@ -508,7 +536,7 @@
 
                 const newSection = document.getElementById(sectionId);
                 if (!newSection) {
-                    console.error(`Section ${sectionId} not found!`);
+                    console.error(`セクション ${sectionId} が見つかりません！`);
                     return;
                 }
                 const newContent = newSection.querySelector('.content-wrapper');
@@ -527,7 +555,7 @@
                 const sidebarLink = document.querySelector(`#sidebar a[onclick="showSection('${sectionId}')"]`);
                 if (desktopLink) desktopLink.classList.add('active');
                 if (sidebarLink) sidebarLink.classList.add('active');
-                else console.error(`Sidebar link for ${sectionId} not found!`);
+                else console.error(`サイドバーのリンク ${sectionId} が見つかりません！`);
                 document.getElementById("sidebar").classList.remove("open");
                 document.getElementById("overlay").classList.remove("active");
             }, 500);
@@ -535,16 +563,16 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             const sidebarItems = document.querySelectorAll('#sidebar a');
-            console.log("Sidebar items loaded:", sidebarItems.length);
+            console.log("サイドバー項目数:", sidebarItems.length);
             sidebarItems.forEach((item, index) => {
-                console.log(`Item ${index + 1}: ${item.textContent}`);
+                console.log(`項目 ${index + 1}: ${item.textContent}`);
             });
             const hash = window.location.hash.substring(1);
             const validSections = ['home', 'profile', 'works', 'price', 'contact'];
             const sectionToShow = validSections.includes(hash) ? hash : 'home';
             showSection(sectionToShow);
 
-            // スワイプで閉じる機能
+            // スワイプでサイドバーを閉じる
             const sidebar = document.getElementById("sidebar");
             let touchStartX = 0;
             let touchEndX = 0;
