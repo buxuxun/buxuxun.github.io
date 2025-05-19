@@ -274,23 +274,29 @@
             white-space: pre-wrap;
             text-align: left;
             overflow-x: auto;
+            position: relative; /* コピーボタンの位置基準 */
         }
         /* コピーボタンのスタイル */
         .copy-button {
-            background: #e67e22;
-            color: #fff;
-            padding: 10px 20px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
             border: none;
             border-radius: 5px;
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
             cursor: pointer;
-            display: block;
-            margin: 10px auto;
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease, color 0.3s ease;
         }
         .copy-button:hover {
-            background: #ff9f43;
+            background: #e67e22;
+            color: #fff;
         }
         footer {
             background: rgba(0, 0, 0, 0.3);
@@ -353,8 +359,9 @@
                 padding: 15px;
             }
             .copy-button {
-                font-size: 12px;
-                padding: 8px 16px;
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
             }
         }
     </style>
@@ -446,8 +453,7 @@
 ハモリトラック数: [0/1/2/…/10]
 ハモリトラック作成数: [0/1/2/…/10]
 その他（コーラスや合いの手など）: [0/1/2/…/10]
-その他要望: </pre>
-            <button class="copy-button" onclick="copyTemplate()">テンプレートをコピー</button>
+その他要望: <button class="copy-button" onclick="copyTemplate()" title="テンプレートをコピー"><i class="fas fa-copy"></i></button></pre>
             <p>企業様は、直接メールにてご連絡ください。</p>
             <p>X: <a href="https://x.com/buxun" target="_blank">@buxun</a> | メールアドレス: <a href="mailto:buxuxuq@gmail.com">buxuxuq@gmail.com</a></p>
         </div>
@@ -465,7 +471,7 @@
     <script>
         // テンプレートをクリップボードにコピーする関数
         function copyTemplate() {
-            const template = document.querySelector('.request-template').innerText;
+            const template = document.querySelector('.request-template').innerText.replace(/\[.*\]/g, ''); // ボタンのHTMLを除外
             navigator.clipboard.writeText(template).then(() => {
                 alert('テンプレートをコピーしました！');
             }).catch(() => {
