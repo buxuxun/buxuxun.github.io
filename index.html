@@ -373,6 +373,43 @@
                 height: 28px;
                 font-size: 14px;
             }
+            .home-banner {
+                width: 100%;
+                max-width: 750px;
+                border-radius: 15px;
+                display: block;
+                margin: 0 auto;
+                box-shadow: 0 0 20px rgba(0,0,0,0.4);
+            }
+            
+            .home-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin-top: 30px;
+                flex-wrap: wrap;
+            }
+
+            .home-button {
+                display: inline-block;
+                padding: 15px 30px;
+                background: rgba(230, 126, 34, 0.9);
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 10px;
+                font-family: 'Raleway', sans-serif;
+                font-size: 18px;
+                font-weight: 700;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                box-shadow: 0 0 15px rgba(230, 126, 34, 0.4);
+            }
+
+            .home-button:hover {
+                background: #ff9f43;
+                transform: translateY(-3px);
+                box-shadow: 0 0 20px rgba(255, 159, 67, 0.6);
+            }
         }
     </style>
 </head>
@@ -401,10 +438,24 @@
         <div id="overlay" onclick="toggleSidebar()" aria-hidden="true"></div>
     </header>
     <section id="home">
-        <div class="content-wrapper active">
-            <img src="images/matomewari.png" alt="複数曲まとめ割" class="home-banner">
+    <div class="content-wrapper active">
+
+        <img src="images/matomewari.jpg"
+             alt="複数曲まとめ割"
+             class="home-banner">
+
+        <div class="home-buttons">
+            <a onclick="showSection('price')" class="home-button">
+                価格確認はこちら
+            </a>
+
+            <a onclick="showSection('contact')" class="home-button">
+                ご依頼はこちら
+            </a>
         </div>
-    </section>
+
+    </div>
+</section>
     <section id="profile">
         <div class="content-wrapper">
             <h2>Profile</h2>
