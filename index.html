@@ -642,7 +642,7 @@
             });
             const hash = window.location.hash.substring(1);
             const validSections = ['home', 'profile', 'works', 'price', 'contact'];
-            const sectionToShow = validSections.includes(hash) ? hash : 'contact';
+            const sectionToShow = validSections.includes(hash) ? hash : 'home';
             showSection(sectionToShow);
             // スワイプでサイドバーを閉じる
             const sidebar = document.getElementById("sidebar");
