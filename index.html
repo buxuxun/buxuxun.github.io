@@ -393,23 +393,26 @@
 
             .home-button {
                 display: inline-block;
-                padding: 15px 30px;
-                background: rgba(230, 126, 34, 0.9);
+                padding: 14px 28px;
+                background: rgba(255, 255, 255, 0.08);
                 color: #ffffff;
                 text-decoration: none;
-                border-radius: 10px;
+                border-radius: 12px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(10px);
                 font-family: 'Raleway', sans-serif;
-                font-size: 18px;
-                font-weight: 700;
+                font-size: 16px;
+                font-weight: 600;
+               letter-spacing: 1px;
                 transition: all 0.3s ease;
                 cursor: pointer;
-                box-shadow: 0 0 15px rgba(230, 126, 34, 0.4);
+                box-shadow: 0 0 15px rgba(0,0,0,0.25);
             }
-
+            
             .home-button:hover {
-                background: #ff9f43;
-                transform: translateY(-3px);
-                box-shadow: 0 0 20px rgba(255, 159, 67, 0.6);
+                background: rgba(255, 255, 255, 0.15);
+                transform: translateY(-2px);
+                box-shadow: 0 0 20px rgba(255,255,255,0.1);
             }
     </style>
 </head>
